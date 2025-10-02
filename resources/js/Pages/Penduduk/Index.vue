@@ -281,6 +281,11 @@ const downloadExcel = () => {
                                         <th
                                             class="px-3 py-3 text-left text-xs font-medium text-white uppercase tracking-wider"
                                         >
+                                            Dusun/RT/RW
+                                        </th>
+                                        <th
+                                            class="px-3 py-3 text-left text-xs font-medium text-white uppercase tracking-wider"
+                                        >
                                             Aksi
                                         </th>
                                     </tr>
@@ -407,6 +412,32 @@ const downloadExcel = () => {
                                                 :title="item.alamat"
                                             >
                                                 {{ item.alamat }}
+                                            </div>
+                                        </td>
+                                        <td
+                                            class="px-3 py-4 text-sm text-gray-900"
+                                        >
+                                            <div class="text-xs">
+                                                <div v-if="item.dusun">
+                                                    {{ item.dusun }}
+                                                </div>
+                                                <div
+                                                    v-if="item.rt || item.rw"
+                                                    class="text-gray-600"
+                                                >
+                                                    RT: {{ item.rt || "-" }} /
+                                                    RW: {{ item.rw || "-" }}
+                                                </div>
+                                                <div
+                                                    v-if="
+                                                        !item.dusun &&
+                                                        !item.rt &&
+                                                        !item.rw
+                                                    "
+                                                    class="text-gray-400"
+                                                >
+                                                    -
+                                                </div>
                                             </div>
                                         </td>
                                         <td

@@ -100,6 +100,33 @@ const formatBoolean = (value) => {
                                 <div>
                                     <label
                                         class="block text-sm font-medium text-gray-700"
+                                        >Dusun</label
+                                    >
+                                    <p class="mt-1 text-sm text-gray-900">
+                                        {{ penduduk.dusun || "-" }}
+                                    </p>
+                                </div>
+                                <div>
+                                    <label
+                                        class="block text-sm font-medium text-gray-700"
+                                        >RT</label
+                                    >
+                                    <p class="mt-1 text-sm text-gray-900">
+                                        {{ penduduk.rt || "-" }}
+                                    </p>
+                                </div>
+                                <div>
+                                    <label
+                                        class="block text-sm font-medium text-gray-700"
+                                        >RW</label
+                                    >
+                                    <p class="mt-1 text-sm text-gray-900">
+                                        {{ penduduk.rw || "-" }}
+                                    </p>
+                                </div>
+                                <div>
+                                    <label
+                                        class="block text-sm font-medium text-gray-700"
                                         >Jenis Kelamin</label
                                     >
                                     <p class="mt-1">

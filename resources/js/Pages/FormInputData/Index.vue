@@ -15,6 +15,9 @@ const form = useForm({
     nik: "",
     nama_lengkap: "",
     alamat: "",
+    dusun: "",
+    rt: "",
+    rw: "",
     jenis_kelamin: "",
     tempat_lahir: "",
     tanggal_lahir: "",
@@ -190,6 +193,54 @@ const getOptions = (masterArray) => {
                                         <InputError
                                             class="mt-2"
                                             :message="form.errors.alamat"
+                                        />
+                                    </div>
+
+                                    <!-- Dusun -->
+                                    <div>
+                                        <InputLabel for="dusun" value="Dusun" />
+                                        <TextInput
+                                            id="dusun"
+                                            type="text"
+                                            class="mt-1 block w-full"
+                                            v-model="form.dusun"
+                                            placeholder="Masukkan nama dusun"
+                                        />
+                                        <InputError
+                                            class="mt-2"
+                                            :message="form.errors.dusun"
+                                        />
+                                    </div>
+
+                                    <!-- RT -->
+                                    <div>
+                                        <InputLabel for="rt" value="RT" />
+                                        <TextInput
+                                            id="rt"
+                                            type="text"
+                                            class="mt-1 block w-full"
+                                            v-model="form.rt"
+                                            placeholder="Contoh: 001"
+                                        />
+                                        <InputError
+                                            class="mt-2"
+                                            :message="form.errors.rt"
+                                        />
+                                    </div>
+
+                                    <!-- RW -->
+                                    <div>
+                                        <InputLabel for="rw" value="RW" />
+                                        <TextInput
+                                            id="rw"
+                                            type="text"
+                                            class="mt-1 block w-full"
+                                            v-model="form.rw"
+                                            placeholder="Contoh: 001"
+                                        />
+                                        <InputError
+                                            class="mt-2"
+                                            :message="form.errors.rw"
                                         />
                                     </div>
 

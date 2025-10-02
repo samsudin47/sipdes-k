@@ -26,25 +26,25 @@ const formatDateForInput = (dateValue) => {
     if (!dateValue) return "";
 
     // Jika dateValue adalah string, coba parse
-    if (typeof dateValue === 'string') {
+    if (typeof dateValue === "string") {
         // Jika sudah dalam format YYYY-MM-DD, gunakan langsung
         if (dateValue.match(/^\d{4}-\d{2}-\d{2}$/)) {
             return dateValue;
         }
         // Jika ada waktu, ambil bagian tanggal saja
-        if (dateValue.includes(' ')) {
-            return dateValue.split(' ')[0];
+        if (dateValue.includes(" ")) {
+            return dateValue.split(" ")[0];
         }
         // Coba parse dengan Date constructor
         const parsedDate = new Date(dateValue);
         if (!isNaN(parsedDate.getTime())) {
-            return parsedDate.toISOString().split('T')[0];
+            return parsedDate.toISOString().split("T")[0];
         }
     }
 
     // Jika dateValue adalah object Date
     if (dateValue instanceof Date && !isNaN(dateValue.getTime())) {
-        return dateValue.toISOString().split('T')[0];
+        return dateValue.toISOString().split("T")[0];
     }
 
     return "";
@@ -55,71 +55,105 @@ const form = useForm({
     nik: props.penduduk.nik || "",
     nama_lengkap: props.penduduk.nama_lengkap || "",
     alamat: props.penduduk.alamat || "",
-    jenis_kelamin: (typeof props.penduduk.jenis_kelamin === 'object' && props.penduduk.jenis_kelamin?.id)
-        ? props.penduduk.jenis_kelamin.id
-        : props.penduduk.jenis_kelamin || "",
+    dusun: props.penduduk.dusun || "",
+    rt: props.penduduk.rt || "",
+    rw: props.penduduk.rw || "",
+    jenis_kelamin:
+        typeof props.penduduk.jenis_kelamin === "object" &&
+        props.penduduk.jenis_kelamin?.id
+            ? props.penduduk.jenis_kelamin.id
+            : props.penduduk.jenis_kelamin || "",
     tempat_lahir: props.penduduk.tempat_lahir || "",
     tanggal_lahir: formatDateForInput(props.penduduk.tanggal_lahir),
-    agama: (typeof props.penduduk.agama === 'object' && props.penduduk.agama?.id)
-        ? props.penduduk.agama.id
-        : props.penduduk.agama || "",
-    pendidikan_kk: (typeof props.penduduk.pendidikan_kk === 'object' && props.penduduk.pendidikan_kk?.id)
-        ? props.penduduk.pendidikan_kk.id
-        : props.penduduk.pendidikan_kk || "",
-    pendidikan_sedang: (typeof props.penduduk.pendidikan_sedang === 'object' && props.penduduk.pendidikan_sedang?.id)
-        ? props.penduduk.pendidikan_sedang.id
-        : props.penduduk.pendidikan_sedang || "",
-    pekerjaan: (typeof props.penduduk.pekerjaan === 'object' && props.penduduk.pekerjaan?.id)
-        ? props.penduduk.pekerjaan.id
-        : props.penduduk.pekerjaan || "",
-    status_menikah: (typeof props.penduduk.status_menikah === 'object' && props.penduduk.status_menikah?.id)
-        ? props.penduduk.status_menikah.id
-        : props.penduduk.status_menikah || "",
-    kk_level: (typeof props.penduduk.kk_level === 'object' && props.penduduk.kk_level?.id)
-        ? props.penduduk.kk_level.id
-        : props.penduduk.kk_level || "",
-    warga_negara: (typeof props.penduduk.warga_negara === 'object' && props.penduduk.warga_negara?.id)
-        ? props.penduduk.warga_negara.id
-        : props.penduduk.warga_negara || "",
+    agama:
+        typeof props.penduduk.agama === "object" && props.penduduk.agama?.id
+            ? props.penduduk.agama.id
+            : props.penduduk.agama || "",
+    pendidikan_kk:
+        typeof props.penduduk.pendidikan_kk === "object" &&
+        props.penduduk.pendidikan_kk?.id
+            ? props.penduduk.pendidikan_kk.id
+            : props.penduduk.pendidikan_kk || "",
+    pendidikan_sedang:
+        typeof props.penduduk.pendidikan_sedang === "object" &&
+        props.penduduk.pendidikan_sedang?.id
+            ? props.penduduk.pendidikan_sedang.id
+            : props.penduduk.pendidikan_sedang || "",
+    pekerjaan:
+        typeof props.penduduk.pekerjaan === "object" &&
+        props.penduduk.pekerjaan?.id
+            ? props.penduduk.pekerjaan.id
+            : props.penduduk.pekerjaan || "",
+    status_menikah:
+        typeof props.penduduk.status_menikah === "object" &&
+        props.penduduk.status_menikah?.id
+            ? props.penduduk.status_menikah.id
+            : props.penduduk.status_menikah || "",
+    kk_level:
+        typeof props.penduduk.kk_level === "object" &&
+        props.penduduk.kk_level?.id
+            ? props.penduduk.kk_level.id
+            : props.penduduk.kk_level || "",
+    warga_negara:
+        typeof props.penduduk.warga_negara === "object" &&
+        props.penduduk.warga_negara?.id
+            ? props.penduduk.warga_negara.id
+            : props.penduduk.warga_negara || "",
     nik_ayah: props.penduduk.nik_ayah || "",
     nama_ayah: props.penduduk.nama_ayah || "",
     nik_ibu: props.penduduk.nik_ibu || "",
     nama_ibu: props.penduduk.nama_ibu || "",
-    golongan_darah: (typeof props.penduduk.golongan_darah === 'object' && props.penduduk.golongan_darah?.id)
-        ? props.penduduk.golongan_darah.id
-        : props.penduduk.golongan_darah || "",
+    golongan_darah:
+        typeof props.penduduk.golongan_darah === "object" &&
+        props.penduduk.golongan_darah?.id
+            ? props.penduduk.golongan_darah.id
+            : props.penduduk.golongan_darah || "",
     akta_lahir: props.penduduk.akta_lahir || "",
     dokumen_passport: props.penduduk.dokumen_passport || "",
-    tanggal_akhir_passport: formatDateForInput(props.penduduk.tanggal_akhir_passport),
+    tanggal_akhir_passport: formatDateForInput(
+        props.penduduk.tanggal_akhir_passport
+    ),
     akta_perkawinan: props.penduduk.akta_perkawinan || "",
     tanggal_perkawinan: formatDateForInput(props.penduduk.tanggal_perkawinan),
     akta_perceraian: props.penduduk.akta_perceraian || "",
     tanggal_perceraian: formatDateForInput(props.penduduk.tanggal_perceraian),
     dokumen_kitas: props.penduduk.dokumen_kitas || "",
-    jamkesnas: (typeof props.penduduk.jamkesnas === 'object' && props.penduduk.jamkesnas?.id)
-        ? props.penduduk.jamkesnas.id
-        : props.penduduk.jamkesnas || "",
-    cacat: (typeof props.penduduk.cacat === 'object' && props.penduduk.cacat?.id)
-        ? props.penduduk.cacat.id
-        : props.penduduk.cacat || "",
-    cara_kb: (typeof props.penduduk.cara_kb === 'object' && props.penduduk.cara_kb?.id)
-        ? props.penduduk.cara_kb.id
-        : props.penduduk.cara_kb || "",
-    hamil: (typeof props.penduduk.hamil === 'object' && props.penduduk.hamil?.id)
-        ? props.penduduk.hamil.id
-        : props.penduduk.hamil || "",
-    ktp_el: (typeof props.penduduk.ktp_el === 'object' && props.penduduk.ktp_el?.id)
-        ? props.penduduk.ktp_el.id
-        : props.penduduk.ktp_el || "",
-    status_rekam: (typeof props.penduduk.status_rekam === 'object' && props.penduduk.status_rekam?.id)
-        ? props.penduduk.status_rekam.id
-        : props.penduduk.status_rekam || "",
-    status_dasar: (typeof props.penduduk.status_dasar === 'object' && props.penduduk.status_dasar?.id)
-        ? props.penduduk.status_dasar.id
-        : props.penduduk.status_dasar || "",
-    asuransi: (typeof props.penduduk.asuransi === 'object' && props.penduduk.asuransi?.id)
-        ? props.penduduk.asuransi.id
-        : props.penduduk.asuransi || "",
+    jamkesnas:
+        typeof props.penduduk.jamkesnas === "object" &&
+        props.penduduk.jamkesnas?.id
+            ? props.penduduk.jamkesnas.id
+            : props.penduduk.jamkesnas || "",
+    cacat:
+        typeof props.penduduk.cacat === "object" && props.penduduk.cacat?.id
+            ? props.penduduk.cacat.id
+            : props.penduduk.cacat || "",
+    cara_kb:
+        typeof props.penduduk.cara_kb === "object" && props.penduduk.cara_kb?.id
+            ? props.penduduk.cara_kb.id
+            : props.penduduk.cara_kb || "",
+    hamil:
+        typeof props.penduduk.hamil === "object" && props.penduduk.hamil?.id
+            ? props.penduduk.hamil.id
+            : props.penduduk.hamil || "",
+    ktp_el:
+        typeof props.penduduk.ktp_el === "object" && props.penduduk.ktp_el?.id
+            ? props.penduduk.ktp_el.id
+            : props.penduduk.ktp_el || "",
+    status_rekam:
+        typeof props.penduduk.status_rekam === "object" &&
+        props.penduduk.status_rekam?.id
+            ? props.penduduk.status_rekam.id
+            : props.penduduk.status_rekam || "",
+    status_dasar:
+        typeof props.penduduk.status_dasar === "object" &&
+        props.penduduk.status_dasar?.id
+            ? props.penduduk.status_dasar.id
+            : props.penduduk.status_dasar || "",
+    asuransi:
+        typeof props.penduduk.asuransi === "object" &&
+        props.penduduk.asuransi?.id
+            ? props.penduduk.asuransi.id
+            : props.penduduk.asuransi || "",
 });
 
 const submit = () => {
@@ -260,6 +294,54 @@ const submit = () => {
                                         <InputError
                                             class="mt-2"
                                             :message="form.errors.alamat"
+                                        />
+                                    </div>
+
+                                    <!-- Dusun -->
+                                    <div>
+                                        <InputLabel for="dusun" value="Dusun" />
+                                        <TextInput
+                                            id="dusun"
+                                            type="text"
+                                            class="mt-1 block w-full"
+                                            v-model="form.dusun"
+                                            placeholder="Masukkan nama dusun"
+                                        />
+                                        <InputError
+                                            class="mt-2"
+                                            :message="form.errors.dusun"
+                                        />
+                                    </div>
+
+                                    <!-- RT -->
+                                    <div>
+                                        <InputLabel for="rt" value="RT" />
+                                        <TextInput
+                                            id="rt"
+                                            type="text"
+                                            class="mt-1 block w-full"
+                                            v-model="form.rt"
+                                            placeholder="Contoh: 001"
+                                        />
+                                        <InputError
+                                            class="mt-2"
+                                            :message="form.errors.rt"
+                                        />
+                                    </div>
+
+                                    <!-- RW -->
+                                    <div>
+                                        <InputLabel for="rw" value="RW" />
+                                        <TextInput
+                                            id="rw"
+                                            type="text"
+                                            class="mt-1 block w-full"
+                                            v-model="form.rw"
+                                            placeholder="Contoh: 001"
+                                        />
+                                        <InputError
+                                            class="mt-2"
+                                            :message="form.errors.rw"
                                         />
                                     </div>
 

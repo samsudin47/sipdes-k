@@ -73,9 +73,15 @@ class ExcelGenerator
     private function getCellClass($index, $value)
     {
         // Determine cell class based on column index and value
-        if ($index === 0) return 'number'; // No column
-        if (in_array($index, [1, 2])) return 'text'; // No KK, NIK
-        if (in_array($index, [7, 22, 24, 26, 36, 37])) return 'date'; // Date columns
+        if ($index === 0) return 'text'; // Alamat
+        if ($index === 1) return 'text'; // Dusun
+        if ($index === 2) return 'text'; // RW - force text to preserve leading zeros
+        if ($index === 3) return 'text'; // RT - force text to preserve leading zeros
+        if ($index === 4) return 'text'; // Nama Lengkap
+        if ($index === 5) return 'text'; // No KK
+        if ($index === 6) return 'text'; // NIK
+        if ($index === 7) return 'text'; // Jenis Kelamin - force text to show ID properly
+        if (in_array($index, [9, 22, 24, 26, 36, 37])) return 'date'; // Date columns (adjusted indices)
         if (is_numeric($value)) return 'number';
         return 'text';
     }

@@ -86,6 +86,9 @@ class PendudukController extends Controller
             'nik' => 'required|string|max:16|unique:penduduk,nik',
             'nama_lengkap' => 'required|string|max:100',
             'alamat' => 'required|string',
+            'dusun' => 'nullable|string|max:50',
+            'rt' => 'nullable|string|max:10',
+            'rw' => 'nullable|string|max:10',
             'jenis_kelamin' => 'required|exists:sex,id',
             'tempat_lahir' => 'required|string|max:50',
             'tanggal_lahir' => 'required|date',
@@ -173,6 +176,9 @@ class PendudukController extends Controller
             'nik' => 'required|string|max:16|unique:penduduk,nik,' . $penduduk->id,
             'nama_lengkap' => 'required|string|max:100',
             'alamat' => 'required|string',
+            'dusun' => 'nullable|string|max:50',
+            'rt' => 'nullable|string|max:10',
+            'rw' => 'nullable|string|max:10',
             'jenis_kelamin' => 'required|exists:sex,id',
             'tempat_lahir' => 'required|string|max:50',
             'tanggal_lahir' => 'required|date',
@@ -250,12 +256,14 @@ class PendudukController extends Controller
 
         // Prepare headers
         $headers = [
-            'No',
+            'Alamat',
+            'Dusun',
+            'RW',
+            'RT',
+            'Nama Lengkap',
             'No. KK',
             'NIK',
-            'Nama Lengkap',
-            'Alamat',
-            'Jenis Kelamin',
+            'Sex',
             'Tempat Lahir',
             'Tanggal Lahir',
             'Agama',
@@ -295,12 +303,14 @@ class PendudukController extends Controller
         $no = 1;
         foreach ($penduduk as $item) {
             $data[] = [
-                $no++,
+                $item->alamat,
+                $item->dusun ?: '-',
+                (string)($item->rw ?: '-'), // Force string type for RW
+                (string)($item->rt ?: '-'), // Force string type for RT
+                $item->nama_lengkap,
                 $item->no_kk,
                 $item->nik,
-                $item->nama_lengkap,
-                $item->alamat,
-                $item->jenis_kelamin == 'L' ? 'Laki-laki' : 'Perempuan',
+                (string)$item->jenis_kelamin, // Force string untuk ID jenis kelamin
                 $item->tempat_lahir,
                 $item->tanggal_lahir ? \Carbon\Carbon::parse($item->tanggal_lahir)->format('d/m/Y') : '',
                 $item->agama,
